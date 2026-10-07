@@ -1,0 +1,14 @@
+# KiCad local history (contains its own nested .git) and per-session files
+.history/
+*.lck
+~*.lck
+fp-info-cache
+*-backups/
+_autosave-*
+*.bak
+
+# Per-user view settings (open layers, zoom, etc.)
+*.kicad_prl
+
+# Vendor datasheets (copyrighted; kept locally, linked from AGENTS.md)
+docs/datasheets/

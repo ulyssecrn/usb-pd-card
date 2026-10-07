@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "business-card") (type "KiCad") (uri "${KIPRJMOD}/lib/business-card.kicad_sym") (options "") (descr "Project symbols (NT3H2111 from easyeda2kicad)"))
+)
