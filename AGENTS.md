@@ -6,7 +6,11 @@ Tool: KiCad 10. Fab + assembly: JLCPCB (PCBA). Prefer JLC "basic"/"preferred" pa
 
 **Current build: one card, `usb-pd-card` (KiCad project at the repo root).** It is the USB-C PD tester with the battery-free NFC tag merged onto the same board. A standalone NFC-only handout card (old "Card A") is deferred.
 
-**Status (Oct 2026): v1 design complete and tagged `v1`.** Production files are in `jlcpcb/`. Not ordered yet; JLC quote ≈ $280 for 30 boards including shipping and US duties. Firmware not started.
+**Status: v1 ordered from JLCPCB on 2026-10-11** (tag `v1`; files in `jlcpcb/`).
+- Order: 30 boards; 2 layers, 0.6 mm, black mask, ENIG, outline tolerance ±0.2 mm, JLC mark removed. Confirm Production File and Confirm Parts Placement are both on.
+- Price: PCB $42.70 + Standard PCBA $127.94, before shipping and duties.
+- JLC adds 9 mm edge rails along the long edges (panel 85.6 × 71.98 mm), and the boards arrive with the rails attached. Snap them off and sand the tab nubs.
+- Firmware not started.
 
 ## How the agent works on this repo
 - **The owner draws the schematic and PCB by hand.** The agent gives guidance (part choice, datasheet facts, pin maps, layout advice), checks the owner's work (ERC/DRC, netlist review, renders), and imports or cleans footprints and symbols into `lib/`.
@@ -132,7 +136,7 @@ Tool: KiCad 10. Fab + assembly: JLCPCB (PCBA). Prefer JLC "basic"/"preferred" pa
 3. **In JLC's placement preview, check rotations:** U1 pin-1 dot, D1 cathode band toward VBUS, all 13 LEDs with the cathode toward GND, U2 and U3 pin 1. Stock KiCad footprints (QFN, SOD-123F, LED_0603) are the usual offenders.
 
 ## Remaining deliverables
-1. Order v1 (checklist above).
+1. ~~Order v1~~ (done 2026-10-11). At JLC's confirmations: check that no tabs land near the USB-C tongue, and check placement rotations (checklist above).
 2. Firmware project (PD sink + LED display, pin map above) with a short README on flashing (WCH-LinkE) and testing.
 3. Bring-up: paddle fit in real plugs (both orientations), PD on several chargers, NFC range, choice of C3, measured coil resonance.
 4. v2 ideas:
