@@ -2399,25 +2399,14 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Regulator_Linear:HT75xx-1-SOT89"
+		(symbol "business-card:ME6228A33M3G"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
-				(at -5.08 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "HT75xx-1-SOT89"
-				(at 0 6.35 0)
+				(at 0 8.89 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -2426,20 +2415,18 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
-				(at 0 8.255 0)
+			(property "Value" "ME6228A33M3G"
+				(at 0 -11.43 0)
 				(show_name no)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
-						(italic yes)
 					)
 				)
 			)
-			(property "Datasheet" "https://www.holtek.com/documents/10179/116711/HT75xx-1v250.pdf"
-				(at 0 2.54 0)
+			(property "Footprint" "business-card:SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR"
+				(at 0 -13.97 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -2449,7 +2436,18 @@
 					)
 				)
 			)
-			(property "Description" "100mA Low Dropout Voltage Regulator, Fixed Output, SOT89"
+			(property "Datasheet" "https://lcsc.com/product-detail/New-Arrivals_MICRONE-Nanjing-Micro-One-Elec-ME6228A33M3G_C487914.html"
+				(at 0 -16.51 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2460,7 +2458,40 @@
 					)
 				)
 			)
-			(property "ki_keywords" "100mA LDO Regulator Fixed Positive"
+			(property "Manufacturer" "MICRONE(南京微盟)"
+				(at 0 -19.05 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "ME6228A33M3G"
+				(at 0 -21.59 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C487914"
+				(at 0 -24.13 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "Linear Voltage Regulators (LDO)"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2471,35 +2502,22 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "SOT?89*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "HT75xx-1-SOT89_0_1"
+			(symbol "ME6228A33M3G_0_1"
 				(rectangle
-					(start -5.08 5.08)
-					(end 5.08 -2.54)
+					(start -7.62 6.35)
+					(end 7.62 -1.27)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type background)
 					)
 				)
-			)
-			(symbol "HT75xx-1-SOT89_1_1"
 				(pin power_in line
-					(at 0 -5.08 90)
-					(length 2.54)
-					(name "GND"
+					(at 0 -6.35 90)
+					(length 5.08)
+					(name "VSS"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2514,10 +2532,10 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "VIN"
+				(pin power_out line
+					(at 12.7 3.81 180)
+					(length 5.08)
+					(name "VOUT"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2532,10 +2550,10 @@
 						)
 					)
 				)
-				(pin power_out line
-					(at 7.62 2.54 180)
-					(length 2.54)
-					(name "VOUT"
+				(pin power_in line
+					(at -12.7 3.81 0)
+					(length 5.08)
+					(name "VIN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3436,12 +3454,6 @@
 		(uuid "04897f88-4ed2-4d9d-911f-bb99ed551b85")
 	)
 	(junction
-		(at 152.4 34.29)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "06ce817d-87e1-4dd7-b45b-161682882000")
-	)
-	(junction
 		(at 101.6 123.19)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3466,16 +3478,16 @@
 		(uuid "2370501f-7c1f-460f-9e60-0143c3c53e6e")
 	)
 	(junction
-		(at 138.43 50.8)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "23b4d603-6014-4dbf-ba79-7aab934584d5")
-	)
-	(junction
 		(at 133.35 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "253f758a-864e-4551-9c14-b27b68cb24aa")
+	)
+	(junction
+		(at 152.4 34.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "25944d29-25dd-4694-b912-e9858a529e14")
 	)
 	(junction
 		(at 229.87 24.13)
@@ -3494,12 +3506,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2e420138-b17d-4e9a-b309-63cc1783a1d4")
-	)
-	(junction
-		(at 118.11 34.29)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "324ef2b5-9837-4cd9-a042-0291361b7d51")
 	)
 	(junction
 		(at 266.7 68.58)
@@ -3536,6 +3542,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "672d89e4-15de-4585-a4c5-2c40d607f22d")
+	)
+	(junction
+		(at 137.16 50.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "79dbacda-52b2-4fd4-b1fd-921e97a89f11")
 	)
 	(junction
 		(at 229.87 105.41)
@@ -3632,6 +3644,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e70dacfd-ccfd-4d7a-b470-b72f83c0e497")
+	)
+	(junction
+		(at 118.11 34.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ee35ceea-968d-4d50-9040-6f0db9f9121f")
 	)
 	(junction
 		(at 123.19 91.44)
@@ -3935,6 +3953,16 @@
 	)
 	(wire
 		(pts
+			(xy 118.11 34.29) (xy 124.46 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c53a239-ebea-4be2-a697-5741fa399447")
+	)
+	(wire
+		(pts
 			(xy 118.11 41.91) (xy 118.11 43.18)
 		)
 		(stroke
@@ -3972,26 +4000,6 @@
 			(type default)
 		)
 		(uuid "4188e851-4e3c-46d1-840e-18552a701b57")
-	)
-	(wire
-		(pts
-			(xy 118.11 34.29) (xy 130.81 34.29)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "419183ab-68dd-4851-9295-d078ec8320c7")
-	)
-	(wire
-		(pts
-			(xy 146.05 34.29) (xy 152.4 34.29)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "43faa8da-44ac-4314-b285-0b3fc4c3fbb9")
 	)
 	(wire
 		(pts
@@ -4075,6 +4083,16 @@
 	)
 	(wire
 		(pts
+			(xy 149.86 34.29) (xy 152.4 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b48719c-ccd6-462c-8435-b565941856de")
+	)
+	(wire
+		(pts
 			(xy 123.19 91.44) (xy 133.35 91.44)
 		)
 		(stroke
@@ -4095,6 +4113,16 @@
 	)
 	(wire
 		(pts
+			(xy 137.16 50.8) (xy 152.4 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60cbcbc0-c867-4c96-902b-43e0d6de05dd")
+	)
+	(wire
+		(pts
 			(xy 227.33 105.41) (xy 229.87 105.41)
 		)
 		(stroke
@@ -4102,6 +4130,16 @@
 			(type default)
 		)
 		(uuid "62c992e0-3986-44d5-b2b1-240e1ac9ad1c")
+	)
+	(wire
+		(pts
+			(xy 137.16 44.45) (xy 137.16 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "650d7621-49b1-4d89-a9ff-73bafa88cdcc")
 	)
 	(wire
 		(pts
@@ -4395,7 +4433,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 50.8) (xy 118.11 50.8)
+			(xy 118.11 50.8) (xy 137.16 50.8)
 		)
 		(stroke
 			(width 0)
@@ -4515,16 +4553,6 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 50.8) (xy 138.43 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cefbc021-6bf6-4311-921c-e6edfe75c316")
-	)
-	(wire
-		(pts
 			(xy 256.54 76.2) (xy 259.08 76.2)
 		)
 		(stroke
@@ -4602,16 +4630,6 @@
 			(type default)
 		)
 		(uuid "e4f17366-fb67-4aef-a1db-4fe7b0152005")
-	)
-	(wire
-		(pts
-			(xy 138.43 41.91) (xy 138.43 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e548be0c-a633-4f2f-a960-abfc53368e34")
 	)
 	(wire
 		(pts
@@ -4774,8 +4792,8 @@
 		(uuid "a03450b1-d577-4243-997a-bb5117aa2243")
 	)
 	(symbol
-		(lib_id "Regulator_Linear:HT75xx-1-SOT89")
-		(at 138.43 36.83 0)
+		(lib_id "business-card:ME6228A33M3G")
+		(at 137.16 38.1 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4786,7 +4804,7 @@
 		(fields_autoplaced yes)
 		(uuid "01918bdc-54a7-467f-93c2-cb5fd9caf7f6")
 		(property "Reference" "U2"
-			(at 138.43 26.67 0)
+			(at 137.16 26.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4795,8 +4813,8 @@
 				)
 			)
 		)
-		(property "Value" "HT7533-1"
-			(at 138.43 29.21 0)
+		(property "Value" "ME6228A33M3G"
+			(at 137.16 29.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4805,20 +4823,19 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
-			(at 138.43 28.575 0)
+		(property "Footprint" "business-card:SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR"
+			(at 137.16 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
-					(italic yes)
 				)
 			)
 		)
-		(property "Datasheet" "https://www.holtek.com/documents/10179/116711/HT75xx-1v250.pdf"
-			(at 138.43 34.29 0)
+		(property "Datasheet" "https://lcsc.com/product-detail/New-Arrivals_MICRONE-Nanjing-Micro-One-Elec-ME6228A33M3G_C487914.html"
+			(at 137.16 54.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4829,7 +4846,7 @@
 			)
 		)
 		(property "Description" "100mA Low Dropout Voltage Regulator, Fixed Output, SOT89"
-			(at 138.43 36.83 0)
+			(at 137.16 38.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4839,15 +4856,36 @@
 				)
 			)
 		)
-		(property "LCSC" "C14289"
-			(at 138.43 28.575 0)
+		(property "LCSC" "C487914"
+			(at 137.16 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
-					(italic yes)
+				)
+			)
+		)
+		(property "Manufacturer" "MICRONE(南京微盟)"
+			(at 137.16 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "ME6228A33M3G"
+			(at 137.16 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 			)
 		)
@@ -5081,7 +5119,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "nfc-coils:NFC_Coil_Rect_38x46mm_R4_5T_W0.5_S0.3"
 			(at 46.99 25.4 0)
 			(hide yes)
 			(show_name no)
@@ -5646,7 +5684,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SMF"
+		(property "Footprint" "Diode_SMD:D_SOD-123F"
 			(at 86.36 41.91 0)
 			(hide yes)
 			(show_name no)
@@ -8604,7 +8642,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 106.3752 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -8637,7 +8675,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C15850"
+		(property "LCSC" "C96446"
 			(at 106.3752 45.72 0)
 			(hide yes)
 			(show_name no)

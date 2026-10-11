@@ -12,3 +12,6 @@ _autosave-*
 
 # Vendor datasheets (copyrighted; kept locally, linked from AGENTS.md)
 docs/datasheets/
+
+# Python bytecode
+__pycache__/
