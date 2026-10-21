@@ -151,4 +151,4 @@ Tool: KiCad 10. Fab + assembly: JLCPCB (PCBA). Prefer JLC "basic"/"preferred" pa
    - a "plug USB-C here" label;
    - gold accent art;
    - set the stackup copper finish to ENIG (currently "None"; this only affects the 3D view).
-   - hard-gold "gold fingers" (plus a bevelled edge) on the USB-C paddle: the ENIG on the first v1 card was already wearing through after a day of plug cycles (2026-10-21). Check that JLC offers it on 0.6 mm boards, and its cost.
+   - maybe switch the USB-C paddle from ENIG to hard-gold "gold fingers" (plus a bevelled edge): the ENIG on the first v1 card was already wearing through after a day of plug cycles (2026-10-21). Check that JLC offers it on 0.6 mm boards, and its cost.
