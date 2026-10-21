@@ -6,11 +6,11 @@ Tool: KiCad 10. Fab + assembly: JLCPCB (PCBA). Prefer JLC "basic"/"preferred" pa
 
 **Current build: one card, `usb-pd-card` (KiCad project at the repo root).** It is the USB-C PD tester with the battery-free NFC tag merged onto the same board. A standalone NFC-only handout card (old "Card A") is deferred.
 
-**Status: v1 ordered from JLCPCB on 2026-10-11** (tag `v1`; files in `jlcpcb/`).
+**Status: v1 ordered from JLCPCB on 2026-10-11** (tag `v1`; files in `jlcpcb/`), received 2026-10-21. First card brought up: PD and NFC work.
 - Order: 30 boards; 2 layers, 0.6 mm, black mask, ENIG, outline tolerance ±0.2 mm, JLC mark removed. Confirm Production File and Confirm Parts Placement are both on.
 - Price: PCB $42.70 + Standard PCBA $127.94, before shipping and duties.
 - JLC adds 9 mm edge rails along the long edges (panel 85.6 × 71.98 mm), and the boards arrive with the rails attached. Snap them off and sand the tab nubs.
-- Firmware not started.
+- Firmware: `firmware/` (ch32fun + a project copy of its `usbpd.h`; `nix-shell` toolchain). Works on all 10 sources tried, in both plug orientations (list in `firmware/README.md`).
 
 ## How the agent works on this repo
 - **The owner draws the schematic and PCB by hand.** The agent gives guidance (part choice, datasheet facts, pin maps, layout advice), checks the owner's work (ERC/DRC, netlist review, renders), and imports or cleans footprints and symbols into `lib/`.
@@ -58,7 +58,7 @@ Tool: KiCad 10. Fab + assembly: JLCPCB (PCBA). Prefer JLC "basic"/"preferred" pa
 | CC lines | CC1 → PC14 (pin 28), CC2 → PC15 (pin 1). Each: 5.1 kΩ Rd to GND + H7VL10B ESD to GND. Nothing else on CC. |
 | VBUS sense | 100 kΩ / 15 kΩ divider → PC3 (ADC A13). |
 | BOOT | PC17 (pin 27) 10 kΩ to GND, otherwise unused. |
-| Debug | TP1 SWIO = PC18, TP2 SWCLK = PC19, TP3 +3V3, TP4 GND (WCH-LinkE). |
+| Debug | TP1 SWIO = PC18, TP2 SWCLK = PC19, TP3 +3V3, TP4 GND (programmed with the owner's YD-RP2040 running the `mtabini/ch32fun` Pico programmer: GP2 = DIO, GP3 = DCK; no WCH-LinkE). |
 | LEDs | 12 × red 0603 via 1 kΩ (~1.4 mA), GPIO → R → LED → GND. Pin map below. |
 | NFC | U3 NT3H2111 standalone: L1 coil 2.75 µH across LA/LB, C3 tuning cap DNP, VCC tied to VOUT, C1 220 nF, R1 47 Ω → red LED. SCL/SDA/FD not connected; VSS on GND. |
 
@@ -118,17 +118,23 @@ Tool: KiCad 10. Fab + assembly: JLCPCB (PCBA). Prefer JLC "basic"/"preferred" pa
 - Coil footprints come from `tools/nfc_coil.py` (standalone Python, no KiCad needed): it estimates L / f0 / C3 for each geometry and `--write`s net-tie footprints into `lib/nfc-coils.pretty` (pad 1 = outer end → LA, pad 2 = inner via → B.Cu bridge along y = 0 → LB; built-in no-pour rule area). Target f0 ≈ 14–14.5 MHz untuned with 50 + 3 pF, because C3 can only lower it. `selftest` checks the solver against textbook loops and the Koda coil.
 
 ## Firmware
-- PD sink: wait for Source_Capabilities, parse all PDOs (fixed, PPS, EPR), display them, request 5 V only.
+- PD sink: wait for Source_Capabilities, parse all PDOs (fixed, PPS, EPR), display them, request 5 V only. Build, flash, debug log and LED meanings are in `firmware/README.md`.
+- Toolchain: `firmware/shell.nix` uses the prebuilt nixpkgs `riscv32-none-elf` GCC. Its libgcc is hard-float (rv32gc / ilp32d), which is fine while nothing pulls from libgcc. If the link ever fails on float ABI, switch to an rv32imac / ilp32 cross toolchain.
+- `usbpd.h` (from ch32fun's `usbpd_sink` example) needed five fixes before it worked on every charger: CC2 attach (20 µs comparator settle), a swapped UFP/DFP enum, CC_LVE transmit level, a 1 ms gap before the Request, and replies to post-contract messages. Details are in `firmware/README.md`.
+- Debug link gotchas:
+  - `minichlink -T` reboots the chip on connect, and `-k` only works combined (`-kT`).
+  - The YD's 3V3 on TP3 back-feeds VBUS through U2 (~2.5–3 V), so a charger won't attach while the YD powers the card. The README uses this on purpose to capture reboot loops.
 - Deferred, not in v1: "verify mode" that requests each voltage and measures it via the VBUS divider. If added, rate all input-side parts for 20 V (48 V if EPR).
 
 ## NFC programming (per card, NXP NTAG I²C app or NFC Tools)
+0. Format it. The NT3H2111 ships with CC = 00 00 00 00 (datasheet §8.3.10), so iOS reports "not NDEF compliant". NFC Tools → Other → Advanced NFC commands: `A2 04 03 00 FE 00`, then `A2 03 E1 10 6D 00`. Check page 03 in NXP TagInfo. CC bits can only go 0 → 1 over NFC, and I²C isn't wired, so a wrong byte is permanent. Verified on the first card, 2026-10-21.
 1. Write the NDEF URL record.
 2. Protect it: prefer password protection (AUTH0/PWD) over a permanent lock so the URL can be changed later.
 
 ## Validation
 - NFC: read range and LED brightness with an iPhone and an Android. If weak, fit C3 (C0G, ~4.7–6.8 pF). With a NanoVNA, look for the S11 dip from a pickup loop and aim for 13.56–14.5 MHz.
 - QR: scan the back with iPhone and Android cameras.
-- USB-C: several chargers (laptop brick, phone charger, cheap no-name), both cable orientations.
+- USB-C: done on the first card (10 sources, both orientations; see `firmware/README.md`). Still untested: PD 2.0-only bricks, and any charger that sends post-contract messages.
 
 ## Ordering checklist (JLC)
 1. Upload `jlcpcb/production_files/GERBER-usb-pd-card.zip`. Options: 2 layers, 0.6 mm, ENIG, black mask, white silkscreen, order-number placement/removal, PCBA top side only (Standard).
@@ -137,10 +143,12 @@ Tool: KiCad 10. Fab + assembly: JLCPCB (PCBA). Prefer JLC "basic"/"preferred" pa
 
 ## Remaining deliverables
 1. ~~Order v1~~ (done 2026-10-11). At JLC's confirmations: check that no tabs land near the USB-C tongue, and check placement rotations (checklist above).
-2. Firmware project (PD sink + LED display, pin map above) with a short README on flashing (WCH-LinkE) and testing.
-3. Bring-up: paddle fit in real plugs (both orientations), PD on several chargers, NFC range, choice of C3, measured coil resonance.
-4. v2 ideas:
+2. ~~Firmware project~~ (`firmware/`, working on hardware 2026-10-21).
+3. Bring-up: ~~paddle fit in real plugs (both orientations)~~, ~~PD on several chargers~~, ~~NFC read/write from an iPhone~~ (after the format step); still to do: NFC range, choice of C3, measured coil resonance.
+4. The other 29 cards: flash (`make flash`), format and write the NFC tag (steps above), and a quick charger check.
+5. v2 ideas:
    - original NFC icons;
    - a "plug USB-C here" label;
    - gold accent art;
    - set the stackup copper finish to ENIG (currently "None"; this only affects the 3D view).
+   - hard-gold "gold fingers" (plus a bevelled edge) on the USB-C paddle: the ENIG on the first v1 card was already wearing through after a day of plug cycles (2026-10-21). Check that JLC offers it on 0.6 mm boards, and its cost.
